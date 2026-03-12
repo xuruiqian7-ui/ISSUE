@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA 球迷深度調查問卷</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <header class="glass-header">
+            <div class="logo-container">
+                <svg viewBox="0 0 24 24" fill="none" class="basketball-icon" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M5.4 5.4l13.2 13.2"></path>
+                    <path d="M18.6 5.4L5.4 18.6"></path>
+                    <path d="M12 2a15.3 15.3 0 010 20"></path>
+                    <path d="M2 12a15.3 15.3 0 0120 0"></path>
+                </svg>
+            </div>
+            <h1>NBA 球迷深度調查</h1>
+            <p>我們想了解您對籃球與 NBA 的熱愛與看法</p>
+        </header>
+
+        <form id="survey-form" class="glass-form">
+            
+            <!-- Section 1 -->
+            <section class="form-section hidden" id="section-1">
+                <h2>一、 基本資料</h2>
+                <div class="form-group">
+                    <label for="name">1. 姓名：</label>
+                    <input type="text" id="name" name="name" required placeholder="請輸入您的姓名">
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">2. 年齡：</label>
+                    <input type="number" id="age" name="age" required min="5" max="100" placeholder="請輸入您的年齡">
+                </div>
+
+                <div class="form-group">
+                    <label>3. 性別：</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="男" required>
+                            <span class="custom-radio"></span>男
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="女">
+                            <span class="custom-radio"></span>女
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="其他" id="gender-other-radio">
+                            <span class="custom-radio"></span>其他
+                        </label>
+                        <input type="text" id="gender-other-text" name="gender-other" class="conditional-input" placeholder="請註明">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-next" onclick="nextSection(2)">下一步 <span>&rarr;</span></button>
+                </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section class="form-section hidden" id="section-2">
+                <h2>二、 籃球興趣與參與度</h2>
+                
+                <div class="form-group">
+                    <label>4. 您是否看過籃球相關的比賽？</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="watched_games" value="是" required>
+                            <span class="custom-radio"></span>是
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="watched_games" value="否">
+                            <span class="custom-radio"></span>否
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="like_level">5. 您對籃球的「喜歡程度」是多少？ (1為極不喜歡，10為極為喜歡)</label>
+                    <div class="range-container">
+                        <input type="range" id="like_level" name="like_level" min="1" max="10" value="5" class="custom-range" required>
+                        <output for="like_level" id="like_level_val" class="range-value">5</output>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="satisfaction">6. 您對目前籃球運動整體的「滿意度」是多少？ (1為極不滿意，10為極為滿意)</label>
+                    <div class="range-container">
+                        <input type="range" id="satisfaction" name="satisfaction" min="1" max="10" value="5" class="custom-range" required>
+                        <output for="satisfaction" id="satisfaction_val" class="range-value">5</output>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>7. 您覺得自己對籃球規則與戰術的「理解程度」是多少？</label>
+                    <div class="radio-group vertical">
+                        <label class="radio-label"><input type="radio" name="understanding" value="完全不了解" required><span class="custom-radio"></span>完全不了解</label>
+                        <label class="radio-label"><input type="radio" name="understanding" value="略知一二"><span class="custom-radio"></span>略知一二</label>
+                        <label class="radio-label"><input type="radio" name="understanding" value="普通"><span class="custom-radio"></span>普通</label>
+                        <label class="radio-label"><input type="radio" name="understanding" value="相當了解"><span class="custom-radio"></span>相當了解</label>
+                        <label class="radio-label"><input type="radio" name="understanding" value="專業程度"><span class="custom-radio"></span>專業程度</label>
+                    </div>
+                </div>
+                
+                <div class="form-actions space-between">
+                    <button type="button" class="btn btn-prev" onclick="prevSection(1)"><span>&larr;</span> 上一步</button>
+                    <button type="button" class="btn btn-next" onclick="nextSection(3)">下一步 <span>&rarr;</span></button>
+                </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section class="form-section hidden" id="section-3">
+                <h2>三、 球員與 NBA 專業看法</h2>
+                
+                <div class="form-group">
+                    <label for="fav_player">8. 誰是您最喜歡的 NBA 球員？</label>
+                    <input type="text" id="fav_player" name="fav_player" required placeholder="請輸入球員名稱">
+                </div>
+
+                <div class="form-group">
+                    <label>9. 承上題，您對這位最喜歡的球員了解程度有多少？</label>
+                    <div class="radio-group vertical">
+                        <label class="radio-label"><input type="radio" name="player_knowledge" value="完全不了解" required><span class="custom-radio"></span>完全不了解</label>
+                        <label class="radio-label"><input type="radio" name="player_knowledge" value="略知一二"><span class="custom-radio"></span>略知一二</label>
+                        <label class="radio-label"><input type="radio" name="player_knowledge" value="普通"><span class="custom-radio"></span>普通</label>
+                        <label class="radio-label"><input type="radio" name="player_knowledge" value="相當了解"><span class="custom-radio"></span>相當了解</label>
+                        <label class="radio-label"><input type="radio" name="player_knowledge" value="暸若指掌"><span class="custom-radio"></span>暸若指掌</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>10. 您是否有在關注 NBA 球員的「薪資數據」？</label>
+                    <div class="radio-group">
+                        <label class="radio-label"><input type="radio" name="follow_salary" value="是" required><span class="custom-radio"></span>是</label>
+                        <label class="radio-label"><input type="radio" name="follow_salary" value="否"><span class="custom-radio"></span>否</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>11. 您覺得您最喜歡的球員，其薪資是否符合他的身價與價值？</label>
+                    <div class="radio-group vertical">
+                        <label class="radio-label"><input type="radio" name="salary_match" value="符合" required><span class="custom-radio"></span>符合</label>
+                        <label class="radio-label"><input type="radio" name="salary_match" value="不符合，偏高"><span class="custom-radio"></span>不符合，偏高</label>
+                        <label class="radio-label"><input type="radio" name="salary_match" value="不符合，偏低"><span class="custom-radio"></span>不符合，偏低</label>
+                        <label class="radio-label"><input type="radio" name="salary_match" value="不清楚"><span class="custom-radio"></span>不清楚</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>12. 您覺得您最喜歡的球員，值得繼續留在目前的球隊嗎？</label>
+                    <div class="radio-group vertical">
+                        <label class="radio-label"><input type="radio" name="stay_team" value="值得，應續留" required><span class="custom-radio"></span>值得，應續留</label>
+                        <label class="radio-label"><input type="radio" name="stay_team" value="不值得，建議轉隊"><span class="custom-radio"></span>不值得，建議轉隊</label>
+                        <label class="radio-label"><input type="radio" name="stay_team" value="沒意見"><span class="custom-radio"></span>沒意見</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="goat_team">13. 您認為哪些球員組成的隊伍（或是哪一年的球隊）是「歷史最強球隊」？</label>
+                    <input type="text" id="goat_team" name="goat_team" required placeholder="例如：96年公牛、17年勇士...">
+                </div>
+
+                <div class="form-group">
+                    <label for="dirtiest_player">14. 您覺得在目前 NBA 裡面「最髒（打球動作較不乾淨）」的球員是誰？</label>
+                    <input type="text" id="dirtiest_player" name="dirtiest_player" required placeholder="請輸入球員名稱">
+                </div>
+
+                <div class="form-group">
+                    <label for="dream_team">15. 「假如」您是一位 NBA 球員，您會想要在哪一個球隊效力？</label>
+                    <input type="text" id="dream_team" name="dream_team" required placeholder="請輸入球隊名稱">
+                </div>
+
+                <div class="form-actions space-between">
+                    <button type="button" class="btn btn-prev" onclick="prevSection(2)"><span>&larr;</span> 上一步</button>
+                    <button type="submit" class="btn btn-submit">提交問卷 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" class="submit-icon" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
+                </div>
+            </section>
+        </form>
+
+        <div id="success-message" class="hidden glass-panel success-panel">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h2>提交成功！</h2>
+            <p>非常感謝您撥冗填寫，您的意見對我們非常重要。</p>
+            <button class="btn btn-primary" onclick="resetForm()">再填寫一次</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
